@@ -32,8 +32,9 @@ Los Códigos de Estado más importantes <br>
 404 Not Found: Recurso no encontrado. El cliente busca una URL que no existe o un registro que no está en la base de datos (ej. buscar producto/999 cuando solo hay 10 productos).<br>
 500 Internal Server Error: Ocurrió un error en el servidor (un error de código PHP, conexión a base de datos caída, etc.).<br>
 
-<img width="1000" height="291" alt="image" src="https://github.com/user-attachments/assets/b9ea3654-63dd-401a-b9e0-029d21f31421" />
-Respuesta del Servidor
+
+<img width="711" height="203" alt="image" src="https://github.com/user-attachments/assets/3d1c5290-579c-4307-90e0-1ae2980a1328" />
+
 <br><br>
 ### Recursos
 Paso 1: 
