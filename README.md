@@ -36,10 +36,10 @@ Los Códigos de Estado más importantes <br>
 
 La función http_response_code() en PHP es la forma directa y moderna de decirle al navegador o a la herramienta que está consultando tu API (como Postman) cuál fue el resultado de la operación.
 Por defecto, PHP siempre responde con un código 200 OK si todo el código se ejecutó sin errores fatales. Pero en una API REST, tú necesitas ser más específico.
-- Si usas http_response_code(404);, le envías un mensaje al cliente diciendo: "Lo que pediste no existe".<br>
-- Si usas http_response_code(401);, le dices: "No estás autorizado para entrar aquí".<br>
+- Si usas http_response_code(404); le envías un mensaje al cliente diciendo: "Lo que pediste no existe".<br>
+- Si usas http_response_code(401); le dices: "No estás autorizado para entrar aquí".<br>
 - Es como ponerle una etiqueta de estado a la respuesta de tu servidor.<br>
-<br><br>
+<br>
 ### Recursos
 Paso 1: 
 Abre la terminal o consola de comandos, navega hasta la carpeta raíz donde tienes tus archivos de PHP puro (donde planeas poner tu seguridad.php y products.php) y ejecuta:
