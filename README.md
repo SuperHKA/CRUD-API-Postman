@@ -2,8 +2,20 @@
 1.	Los archivos que creas: login.php (emisor del token), seguridad.php (el middleware perimetral con try/catch) y api/products.php (el endpoint protegido).
 2.	Las herramientas clave: Composer, la biblioteca externa firebase/php-jwt, y Postman para enviar los encabezados Authorization: Bearer.
 3. Concepto de autenticación Stateless (sin estado), donde el servidor no recuerda al usuario mediante sesiones tradicionales, sino que exige el token en cada petición HTTP.
+### Recursos
+Paso 1: 
+Abre la terminal o consola de comandos, navega hasta la carpeta raíz donde tienes tus archivos de PHP puro (donde planeas poner tu seguridad.php y products.php) y ejecuta:
+```bash
+composer init
+```
 
-## ¿Qué es el Payload?
+Paso 2: Descargar la biblioteca de Firebase JWT
+En esa misma terminal, ejecuta el comando para requerir el paquete oficial:
+```bash
+composer require firebase/php-jwt
+```
+
+### ¿Qué es el Payload?
 El nombre Payload significa literalmente "carga útil". Es la parte central del JWT donde viaja la información que el servidor quiere "recordar" sobre el usuario después de que este se ha logueado.
 En tu código, el payload es el array asociativo que contiene tres tipos de datos:
 
