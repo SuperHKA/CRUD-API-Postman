@@ -10,19 +10,19 @@ En tu código, el payload es el array asociativo que contiene tres tipos de dato
 1. Claims Registrados (Estándar)
 Campos predefinidos por el protocolo JWT para asegurar la integridad y el tiempo de vida del token:
 
-iss (Issuer): Identifica a la entidad emisora del token (en este caso, nuestro servidor local).
+- iss (Issuer): Identifica a la entidad emisora del token (en este caso, nuestro servidor local).
 
-iat (Issued At): Registra el timestamp exacto (usando time()) de cuándo fue emitido el token.
+- iat (Issued At): Registra el timestamp exacto (usando time()) de cuándo fue emitido el token.
 
-exp (Expiration): Define el tiempo límite de validez. Se establece mediante time() + 3600, otorgando una sesión activa de 1 hora.
+- exp (Expiration): Define el tiempo límite de validez. Se establece mediante time() + 3600, otorgando una sesión activa de 1 hora.
 
 2. Claims Privados (Personalizados)
 Contienen la información específica de negocio necesaria para la sesión:
 
-data: Objeto que encapsula la identidad y permisos del usuario:
+- data: Objeto que encapsula la identidad y permisos del usuario:
 
-id: Identificador único del usuario en la base de datos.
+- id: Identificador único del usuario en la base de datos.
 
-usuario: Nombre de usuario (ej. admin).
+- usuario: Nombre de usuario (ej. admin).
 
-rol: Perfil de acceso (ej. profesor).
+- rol: Perfil de acceso (ej. profesor).
