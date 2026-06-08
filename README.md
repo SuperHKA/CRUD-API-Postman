@@ -16,6 +16,8 @@ DELETE (Eliminación): Solicitas borrar un recurso.
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white) 
 ![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white) 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) 
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![API REST](https://img.shields.io/badge/API_REST-005571?style=for-the-badge&logo=openapi&logoColor=white)
 
 
 
