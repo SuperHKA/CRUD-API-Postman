@@ -32,9 +32,13 @@ Los Códigos de Estado más importantes <br>
 404 Not Found: Recurso no encontrado. El cliente busca una URL que no existe o un registro que no está en la base de datos (ej. buscar producto/999 cuando solo hay 10 productos).<br>
 500 Internal Server Error: Ocurrió un error en el servidor (un error de código PHP, conexión a base de datos caída, etc.).<br>
 
+### http_response_code(401);
 
-<img width="711" height="203" alt="image" src="https://github.com/user-attachments/assets/3d1c5290-579c-4307-90e0-1ae2980a1328" />
-
+La función http_response_code() en PHP es la forma directa y moderna de decirle al navegador o a la herramienta que está consultando tu API (como Postman) cuál fue el resultado de la operación.
+Por defecto, PHP siempre responde con un código 200 OK si todo el código se ejecutó sin errores fatales. Pero en una API REST, tú necesitas ser más específico.
+- Si usas http_response_code(404);, le envías un mensaje al cliente diciendo: "Lo que pediste no existe".<br>
+- Si usas http_response_code(401);, le dices: "No estás autorizado para entrar aquí".<br>
+- Es como ponerle una etiqueta de estado a la respuesta de tu servidor.<br>
 <br><br>
 ### Recursos
 Paso 1: 
