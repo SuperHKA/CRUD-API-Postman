@@ -3,13 +3,20 @@
 2.	Las herramientas clave: Composer, la biblioteca externa firebase/php-jwt, y Postman para enviar los encabezados Authorization: Bearer.
 3. Concepto de autenticación Stateless (sin estado), donde el servidor no recuerda al usuario mediante sesiones tradicionales, sino que exige el token en cada petición HTTP.
 
+## ¿Por qué es REST?
+No es "solo una API" porque el protocolo HTTP tiene un significado específico para cada método. Si usas Postman para enviar estos métodos, estás cumpliendo con los principios de una API REST:
+
+GET (Lectura): Obtienes datos del servidor.
+POST (Creación): Envías nuevos datos para crear un recurso.
+PUT (Actualización): Envías datos para reemplazar un recurso existente.
+DELETE (Eliminación): Solicitas borrar un recurso.
+
 ## 🌐 Tecnologías utilizadas  
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white) 
 ![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white) 
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) 
-![XAMPP](https://img.shields.io/badge/XAMPP-F37623?style=for-the-badge&logo=xampp&logoColor=white) 
-![WampServer](https://img.shields.io/badge/WampServer-FF0040?style=for-the-badge&logo=windows&logoColor=white)
+
 
 
 ### Recursos
