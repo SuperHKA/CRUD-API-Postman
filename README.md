@@ -1,7 +1,7 @@
 # Integración con Seguridad en APIs con JWT (Arquitectura Stateless)
 1.	Los archivos que creas: login.php (emisor del token), seguridad.php (el middleware perimetral con try/catch) y api/products.php (el endpoint protegido).
-2.	Las herramientas clave: Composer, la biblioteca externa firebase/php-jwt, y Postman / Thunder Client para enviar los encabezados Authorization: Bearer.
-3.	Lo que aprende el estudiante: Aprenden cómo asegurar un backend completo para aplicaciones móviles o frontend modernos (Single Page Applications). Entienden el concepto de autenticación Stateless (sin estado), donde el servidor no recuerda al usuario mediante sesiones tradicionales, sino que exige el token en cada petición HTTP.
+2.	Las herramientas clave: Composer, la biblioteca externa firebase/php-jwt, y Postman para enviar los encabezados Authorization: Bearer.
+3. Concepto de autenticación Stateless (sin estado), donde el servidor no recuerda al usuario mediante sesiones tradicionales, sino que exige el token en cada petición HTTP.
 
 ## ¿Qué es el Payload?
 El nombre Payload significa literalmente "carga útil". Es la parte central del JWT donde viaja la información que el servidor quiere "recordar" sobre el usuario después de que este se ha logueado.
@@ -27,7 +27,7 @@ Contienen la información específica de negocio necesaria para la sesión:
 
 
 
-1. ¿Qué es x-www-form-urlencoded?
+### 1. ¿Qué es x-www-form-urlencoded?
 Lo que estás viendo en Postman bajo la opción x-www-form-urlencoded es el formato que el cliente (en este caso Postman) utiliza para enviar los datos al servidor.
 Es el formato estándar que utilizan los formularios HTML tradicionales cuando envías un <form>. Imagínatelo como una cadena de texto larga donde los campos se concatenan con símbolos:
 
@@ -36,7 +36,7 @@ Es el formato estándar que utilizan los formularios HTML tradicionales cuando e
 
 El servidor recibe esta cadena, la interpreta y, gracias a PHP, automáticamente la convierte en un arreglo asociativo que tú puedes leer fácilmente en tu código así: $_POST['usuario'] y $_POST['clave'].
 
-2. ¿Por qué es el mejor formato para su Login?
+### 2. ¿Por qué es el mejor formato para su Login?
 Para un inicio de sesión, es el formato más simple y compatible porque:
 - Es ligero: No requiere la sobrecarga de un formato más complejo como JSON.
 - Compatibilidad: Cualquier servidor PHP lo entiende de forma nativa sin necesidad de configuraciones adicionales.
