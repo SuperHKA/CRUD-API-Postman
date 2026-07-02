@@ -1,0 +1,22 @@
+$kind: http-request
+name: '05 PUT sin token espera 401'
+method: PUT
+url: '{{base_url}}/api/products/{{product_id}}'
+order: 5000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "codigo": "A001",
+      "producto": "Mouse actualizado",
+      "precio": 12.75,
+      "cantidad": 8
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Estado 401', function () { pm.response.to.have.status(401); });

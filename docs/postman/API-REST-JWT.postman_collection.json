@@ -1,0 +1,182 @@
+{
+  "info": {
+    "name": "API REST JWT - CrudAPI Lab8",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 Login correcto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/login",
+          "host": ["{{base_url}}"],
+          "path": ["api", "login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Estado 200', function () { pm.response.to.have.status(200); });",
+              "var json = pm.response.json();",
+              "pm.test('success true', function () { pm.expect(json.success).to.eql(true); });",
+              "pm.test('token presente', function () { pm.expect(json.data.token).to.be.a('string').and.not.empty; });",
+              "pm.environment.set('jwt_token', json.data.token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 Login con credenciales incorrectas",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"incorrecta\"\n}"},
+        "url": {"raw": "{{base_url}}/api/login", "host": ["{{base_url}}"], "path": ["api", "login"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });", "pm.test('success false', function () { pm.expect(pm.response.json().success).to.eql(false); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "03 GET sin token espera 401",
+      "request": {"method": "GET", "header": [], "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}},
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "04 POST sin token espera 401",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"codigo\": \"A001\",\n  \"producto\": \"Mouse optico\",\n  \"precio\": 10.50,\n  \"cantidad\": 5\n}"},
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "05 PUT sin token espera 401",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"codigo\": \"A001\",\n  \"producto\": \"Mouse actualizado\",\n  \"precio\": 12.75,\n  \"cantidad\": 8\n}"},
+        "url": {"raw": "{{base_url}}/api/products/{{product_id}}", "host": ["{{base_url}}"], "path": ["api", "products", "{{product_id}}"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "06 DELETE sin token espera 401",
+      "request": {"method": "DELETE", "header": [], "url": {"raw": "{{base_url}}/api/products/{{product_id}}", "host": ["{{base_url}}"], "path": ["api", "products", "{{product_id}}"]}},
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "07 GET con token valido",
+      "request": {
+        "method": "GET",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 200', function () { pm.response.to.have.status(200); });", "pm.test('success true', function () { pm.expect(pm.response.json().success).to.eql(true); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "08 POST con token valido",
+      "request": {
+        "method": "POST",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"codigo\": \"A001\",\n  \"producto\": \"Mouse optico\",\n  \"precio\": 10.50,\n  \"cantidad\": 5\n}"},
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 201', function () { pm.response.to.have.status(201); });", "var json = pm.response.json();", "pm.test('producto creado', function () { pm.expect(json.data.id).to.exist; });", "pm.environment.set('product_id', json.data.id);"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "09 GET producto creado",
+      "request": {
+        "method": "GET",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "url": {"raw": "{{base_url}}/api/products/{{product_id}}", "host": ["{{base_url}}"], "path": ["api", "products", "{{product_id}}"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 200', function () { pm.response.to.have.status(200); });", "pm.test('datos del producto', function () { pm.expect(pm.response.json().data.codigo).to.eql('A001'); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "10 PUT producto",
+      "request": {
+        "method": "PUT",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"codigo\": \"A001\",\n  \"producto\": \"Mouse optico actualizado\",\n  \"precio\": 12.75,\n  \"cantidad\": 8\n}"},
+        "url": {"raw": "{{base_url}}/api/products/{{product_id}}", "host": ["{{base_url}}"], "path": ["api", "products", "{{product_id}}"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 200', function () { pm.response.to.have.status(200); });", "pm.test('producto actualizado', function () { pm.expect(pm.response.json().data.cantidad).to.eql(8); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "11 DELETE producto",
+      "request": {
+        "method": "DELETE",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "url": {"raw": "{{base_url}}/api/products/{{product_id}}", "host": ["{{base_url}}"], "path": ["api", "products", "{{product_id}}"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 200', function () { pm.response.to.have.status(200); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "12 GET producto inexistente",
+      "request": {
+        "method": "GET",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "url": {"raw": "{{base_url}}/api/products/999999", "host": ["{{base_url}}"], "path": ["api", "products", "999999"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 404', function () { pm.response.to.have.status(404); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "13 POST con JSON invalido",
+      "request": {
+        "method": "POST",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{ \"codigo\": \"BAD\", "},
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 400', function () { pm.response.to.have.status(400); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "14 POST con codigo duplicado",
+      "request": {
+        "method": "POST",
+        "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{jwt_token}}", "type": "string"}]},
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"codigo\": \"A001\",\n  \"producto\": \"Duplicado\",\n  \"precio\": 9.99,\n  \"cantidad\": 1\n}"},
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 409 por codigo duplicado', function () { pm.response.to.have.status(409); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "15 Solicitud con token alterado",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{jwt_token}}x"}],
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    },
+    {
+      "name": "16 Solicitud con token expirado",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{expired_jwt_token}}"}],
+        "url": {"raw": "{{base_url}}/api/products", "host": ["{{base_url}}"], "path": ["api", "products"]}
+      },
+      "event": [{"listen": "test", "script": {"exec": ["pm.test('Estado 401 cuando se use un token expirado real', function () { pm.response.to.have.status(401); });"], "type": "text/javascript"}}]
+    }
+  ]
+}

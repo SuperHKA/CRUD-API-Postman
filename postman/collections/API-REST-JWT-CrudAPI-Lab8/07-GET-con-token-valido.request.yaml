@@ -1,0 +1,16 @@
+$kind: http-request
+name: '07 GET con token valido'
+method: GET
+url: '{{base_url}}/api/products'
+order: 7000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{jwt_token}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Estado 200', function () { pm.response.to.have.status(200); });
+      pm.test('success true', function () { pm.expect(pm.response.json().success).to.eql(true); });

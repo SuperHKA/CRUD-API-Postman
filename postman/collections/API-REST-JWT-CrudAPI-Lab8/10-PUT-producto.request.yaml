@@ -1,0 +1,28 @@
+$kind: http-request
+name: '10 PUT producto'
+method: PUT
+url: '{{base_url}}/api/products/{{product_id}}'
+order: 10000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{jwt_token}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "codigo": "A001",
+      "producto": "Mouse optico actualizado",
+      "precio": 12.75,
+      "cantidad": 8
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Estado 200', function () { pm.response.to.have.status(200); });
+      pm.test('producto actualizado', function () { pm.expect(pm.response.json().data.cantidad).to.eql(8); });

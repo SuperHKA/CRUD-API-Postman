@@ -1,0 +1,27 @@
+$kind: http-request
+name: '14 POST con codigo duplicado'
+method: POST
+url: '{{base_url}}/api/products'
+order: 14000
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{jwt_token}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "codigo": "A001",
+      "producto": "Duplicado",
+      "precio": 9.99,
+      "cantidad": 1
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Estado 409 por codigo duplicado', function () { pm.response.to.have.status(409); });

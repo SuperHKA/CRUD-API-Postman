@@ -1,0 +1,10 @@
+name: CrudAPI Lab8 Local
+values:
+  - key: base_url
+    value: 'http://localhost/Software7/Laboratorios/CrudAPI-lab8/public'
+  - key: jwt_token
+    secret: true
+  - key: product_id
+    value: '1'
+  - key: expired_jwt_token
+    value: PEGAR_AQUI_UN_TOKEN_EXPIRADO

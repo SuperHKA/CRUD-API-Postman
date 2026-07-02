@@ -1,0 +1,18 @@
+workspace:
+  id: ""
+
+localResources:
+  collections:
+    - ..\API-REST-JWT.postman_collection.json
+    - ../API-REST-JWT.postman_collection.json
+  environments:
+    - ..\API-REST-JWT.postman_environment.json
+    - ../API-REST-JWT.postman_environment.json
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../API-REST-JWT.postman_collection.json: 55696197-3c0e7148-d6e9-4891-a371-a933474a8e40
+  environments:
+    ../API-REST-JWT.postman_environment.json: 55696197-d2e7-4a8f-8d3e-crudapi-lab8-env

@@ -1,0 +1,13 @@
+$kind: http-request
+name: '15 Solicitud con token alterado'
+method: GET
+url: '{{base_url}}/api/products'
+order: 15000
+headers:
+  - key: Authorization
+    value: 'Bearer {{jwt_token}}x'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Estado 401', function () { pm.response.to.have.status(401); });

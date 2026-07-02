@@ -1,0 +1,9 @@
+# Use this workspace to collaborate
+workspace:
+  id: a185a8b5-1a03-4729-80d8-c995abb44d04
+
+localResources:
+  collections:
+    - ..\docs\postman\API-REST-JWT.postman_collection.json
+  environments:
+    - ..\docs\postman\API-REST-JWT.postman_environment.json

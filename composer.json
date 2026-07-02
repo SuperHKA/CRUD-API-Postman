@@ -1,18 +1,16 @@
 {
-    "name": "irina/ejemplo-tokens",
-    "description": "Tokens",
+    "name": "software7/crudapi-lab8",
+    "description": "Laboratorio Desarrollo y Pruebas de una API REST con PHP y Postman",
+    "type": "project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "firebase/php-jwt": "^7.0"
+    },
     "autoload": {
         "psr-4": {
-            "Irina\\EjemploTokens\\": "src/"
+            "App\\": "src/"
         }
-    },
-    "authors": [
-        {
-            "name": "Salomon2514",
-            "email": "irinafong@gmail.com"
-        }
-    ],
-    "require": {
-        "firebase/php-jwt": "^7.0"
     }
 }

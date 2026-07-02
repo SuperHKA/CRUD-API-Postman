@@ -1,0 +1,20 @@
+$kind: http-request
+name: 02 Login con credenciales incorrectas
+method: POST
+url: "{{base_url}}/api/login"
+order: 2000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "admin",
+      "password": "admin123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Estado 401', function () { pm.response.to.have.status(401); });
+      pm.test('success false', function () { pm.expect(pm.response.json().success).to.eql(false); });
+    language: text/javascript

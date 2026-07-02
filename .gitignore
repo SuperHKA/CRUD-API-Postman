@@ -1,5 +1,5 @@
-# --- Dependencias ---
 /vendor/
-
-# --- Carpetas de configuración ---
-/config/
+config/config.php
+.env
+.DS_Store
+Thumbs.db
