@@ -1,16 +1,15 @@
 $kind: http-request
-name: '09 GET producto creado'
+name: 04 GET producto creado
 method: GET
-url: '{{base_url}}/api/products/{{product_id}}'
+url: "{{base_url}}/api/products/"
 order: 9000
 auth:
   type: bearer
   credentials:
-    - key: token
-      value: '{{jwt_token}}'
+    token: "{{jwt_token}}"
 scripts:
   - type: afterResponse
-    language: text/javascript
     code: |-
       pm.test('Estado 200', function () { pm.response.to.have.status(200); });
       pm.test('datos del producto', function () { pm.expect(pm.response.json().data.codigo).to.eql('A001'); });
+    language: text/javascript

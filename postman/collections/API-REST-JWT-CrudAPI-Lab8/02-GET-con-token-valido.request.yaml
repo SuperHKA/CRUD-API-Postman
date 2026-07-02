@@ -1,5 +1,5 @@
 $kind: http-request
-name: '07 GET con token valido'
+name: '02 GET con token valido'
 method: GET
 url: '{{base_url}}/api/products'
 order: 7000

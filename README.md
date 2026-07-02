@@ -136,14 +136,14 @@ public/index.php?resource=products&id=1
 
 ## 13. Endpoints disponibles
 
-| Metodo | Ruta | JWT | Descripcion | Respuesta esperada |
-|---|---|---|---|---|
-| POST | `/api/login` | No | Genera token | 200 con token |
-| GET | `/api/products` | Si | Lista productos | 200 |
-| GET | `/api/products/{id}` | Si | Consulta producto | 200 o 404 |
-| POST | `/api/products` | Si | Crea producto | 201 |
-| PUT | `/api/products/{id}` | Si | Actualiza producto | 200 o 404 |
-| DELETE | `/api/products/{id}` | Si | Elimina producto | 200 o 404 |
+| Metodo | Ruta                   | JWT | Descripcion        | Respuesta esperada |
+| ------ | ---------------------- | --- | ------------------ | ------------------ |
+| POST   | `/api/login`         | No  | Genera token       | 200 con token      |
+| GET    | `/api/products`      | Si  | Lista productos    | 200                |
+| GET    | `/api/products/{id}` | Si  | Consulta producto  | 200 o 404          |
+| POST   | `/api/products`      | Si  | Crea producto      | 201                |
+| PUT    | `/api/products/{id}` | Si  | Actualiza producto | 200 o 404          |
+| DELETE | `/api/products/{id}` | Si  | Elimina producto   | 200 o 404          |
 
 ## 14. Uso del token JWT
 
@@ -294,27 +294,33 @@ Seleccionar el entorno `CrudAPI Lab8 Local` y revisar `base_url`.
 
 ## 20. Evidencias y capturas
 
-Agregar manualmente estas capturas en `docs/images/`:
+Login (se pone el token en la configuración de entorno de postman):
 
-- `login-api.png`: `/api/login` con token generado.
-- `sin-token-401.png`: solicitud sin token con respuesta 401.
-- `get-productos.png`: GET exitoso.
-- `post-producto.png`: POST exitoso.
-- `put-producto.png`: PUT exitoso.
-- `delete-producto.png`: DELETE exitoso.
-- `mysql-users.png`: tabla users con `password_hash`.
-- `mysql-products.png`: tabla products con registros.
+![1782965428898](image/README/1782965428898.png)
 
-Enlaces preparados:
+GET productos (obtener todos los productos):
 
-![Login API](docs/images/login-api.png)
-![Sin token 401](docs/images/sin-token-401.png)
-![GET exitoso](docs/images/get-productos.png)
-![POST exitoso](docs/images/post-producto.png)
-![PUT exitoso](docs/images/put-producto.png)
-![DELETE exitoso](docs/images/delete-producto.png)
-![Tabla users](docs/images/mysql-users.png)
-![Tabla products](docs/images/mysql-products.png)
+![GET exitoso](docs/images/getproductos.png)
+
+GET especifico de un producto:
+
+![1782965717842](image/README/1782965717842.png)
+
+POST productos (crear producto):
+
+![1782965610838](image/README/1782965610838.png)
+
+PUT productos (actualizar):
+
+![1782965701795](image/README/1782965701795.png)
+
+DELETE (borrar un producto):
+
+![1782965770800](image/README/1782965770800.png)
+
+Tablas de la base de datos:
+
+![1782965786368](image/README/1782965786368.png)
 
 ## 21. Errores comunes
 
@@ -327,8 +333,14 @@ Enlaces preparados:
 - JSON invalido: revisar comas, llaves y `Content-Type: application/json`.
 - Ruta base incorrecta en Postman: ajustar `base_url`.
 
-## 22. Autor y grupo
+## 22. Autores y grupo
 
-Autor: Andre Reboulet
+Autores: André Reboulet y Rubén Dominguez
 
 Grupo: 1GS131
+
+Docente: Irina Fong
+
+## 23. Conclusión General
+
+En este laboratorio se aprendió a desarrollar y probar una API REST utilizando PHP, MySQL, PDO y Postman. También se comprendió el uso de los métodos HTTP para realizar operaciones CRUD, el intercambio de información mediante JSON y la protección de los endpoints con autenticación JWT. Además, se reforzaron conocimientos sobre consultas preparadas, códigos de respuesta HTTP, validación de datos y pruebas de escenarios correctos y de error. En general, el laboratorio permitió entender cómo funciona la comunicación segura entre un cliente y una API sin depender de una interfaz gráfica.

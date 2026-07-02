@@ -1,30 +1,28 @@
 $kind: http-request
-name: '08 POST con token valido'
+name: 03 POST con token valido
 method: POST
-url: '{{base_url}}/api/products'
+url: "{{base_url}}/api/products"
 order: 8000
 auth:
   type: bearer
   credentials:
-    - key: token
-      value: '{{jwt_token}}'
+    token: "{{jwt_token}}"
 headers:
-  - key: Content-Type
-    value: application/json
+  Content-Type: application/json
 body:
   type: json
   content: |-
     {
-      "codigo": "A001",
-      "producto": "Mouse optico",
-      "precio": 10.50,
+      "codigo": "A002",
+      "producto": "Monitor",
+      "precio": 150,
       "cantidad": 5
     }
 scripts:
   - type: afterResponse
-    language: text/javascript
     code: |-
       pm.test('Estado 201', function () { pm.response.to.have.status(201); });
       var json = pm.response.json();
       pm.test('producto creado', function () { pm.expect(json.data.id).to.exist; });
       pm.environment.set('product_id', json.data.id);
+    language: text/javascript

@@ -1,0 +1,13 @@
+$kind: http-request
+name: 06 DELETE producto
+method: DELETE
+url: "{{base_url}}/api/products/2"
+order: 11000
+auth:
+  type: bearer
+  credentials:
+    token: "{{jwt_token}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Estado 200', function () { pm.response.to.have.status(200); });
+    language: text/javascript

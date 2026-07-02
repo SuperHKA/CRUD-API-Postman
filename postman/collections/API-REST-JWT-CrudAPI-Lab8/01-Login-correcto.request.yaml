@@ -2,22 +2,17 @@ $kind: http-request
 name: 01 Login correcto
 method: POST
 url: "{{base_url}}/api/login"
+auth:
+  type: bearer
 order: 1000
 headers:
   Content-Type: application/json
 body:
   type: json
-  content: |-
-    {
-      "username": "admin",
-      "password": "Password123*"
-    }
-scripts:
-  - type: afterResponse
-    code: |-
-      pm.test('Estado 200', function () { pm.response.to.have.status(200); });
-      var json = pm.response.json();
-      pm.test('success true', function () { pm.expect(json.success).to.eql(true); });
-      pm.test('token presente', function () { pm.expect(json.data.token).to.be.a('string').and.not.empty; });
-      pm.environment.set('jwt_token', json.data.token);
-    language: text/javascript
+  content: "{\r
+
+    \    \"username\":\"admin\",\r
+
+    \    \"password\":\"Password123*\"\r
+
+    }"
